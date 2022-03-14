@@ -1,10 +1,11 @@
 # qr_reader
 
-A new Flutter project.
+A QR reader for mobile.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project constructs an app to read GEOS and urls using your mobile and QRs Code.
+
 
 A few resources to get you started if this is your first Flutter project:
 

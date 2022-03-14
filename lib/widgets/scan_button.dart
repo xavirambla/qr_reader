@@ -9,17 +9,23 @@ class ScanButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scanListProvider = Provider.of<ScanListProvider>(context); //esto se debe ejecutar cuando se reciba cambios
+//    final scanListProvider = Provider.of<ScanListProvider>(context); //esto se debe ejecutar cuando se reciba cambios
 
 
     return FloatingActionButton(
       elevation: 0,
       child: const Icon (Icons.filter_center_focus ),
       onPressed: () async {
-          String barcodesScanRes = await FlutterBarcodeScanner.scanBarcode( '#3D8BEF', 'Cancelar', false, ScanMode.QR );
-         //final barcodesScanRes ='http://www.google.es';
+//          String barcodesScanRes = await FlutterBarcodeScanner.scanBarcode( '#3D8BEF', 'Cancelar', false, ScanMode.QR );
+          String barcodesScanRes = await FlutterBarcodeScanner.scanBarcode( '#080800', 'Cancelar', false, ScanMode.QR );
+/*
+  static const String primaryLightString = 'FFA500';
+  static const String primaryDarkString = '0080800';
+   */
+
+      //   barcodesScanRes ='http://www.xavirambla.net';
 //         final barcodesScanRes = 'geo: 45.287135,-75920226';
-         if (barcodesScanRes =='1') return;  // usuario ha pulsado cancelar
+         if (barcodesScanRes =='-1') return;  // usuario ha pulsado cancelar
 
          final scanListProvider = Provider.of<ScanListProvider>(context,listen: false);
          final nuevoScan = await scanListProvider.nuevoScan(barcodesScanRes);

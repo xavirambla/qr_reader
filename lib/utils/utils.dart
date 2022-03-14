@@ -7,7 +7,7 @@ launchURL(BuildContext context, ScanModel scan ) async {
   final url = scan.valor ;
   if (scan.tipo == 'http'){
     //intentamos abrir el sitio web
-    print("URL :" + url);
+//    print("URL :" + url);
     if (await canLaunch( url )){
       await launch( url );
     }

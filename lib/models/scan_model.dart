@@ -12,10 +12,10 @@ class ScanModel {
         this.tipo,
         required this.valor,
     }){
-      if(this.valor.contains('http')){
-        this.tipo = 'http';
+      if( valor.contains('http')){
+         tipo = 'http';
       }else{
-          this.tipo ='geo';
+           tipo ='geo';
       }  
       
 
@@ -26,7 +26,7 @@ class ScanModel {
     String valor;
 
     LatLng getLatLng (){
-        final latLng = this.valor.substring(4).split(',');  // crea un array con la latitud  y longit
+        final latLng =  valor.substring(4).split(',');  // crea un array con la latitud  y longit
         final lat = double.parse( latLng[0]  );
         final lng = double.parse( latLng[1]  );
         
@@ -50,7 +50,7 @@ class ScanModel {
 //los datos que se imprimiran
     @override
   String toString() {
-    // TODO: implement toString
+    
     return '$id Tipo: $tipo  = $valor';
   }
 }

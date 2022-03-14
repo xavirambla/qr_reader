@@ -9,12 +9,14 @@ class ScanListProvider extends ChangeNotifier {
   String tipoSeleccionado="http";
 
   Future<ScanModel> nuevoScan ( String valor) async{
-    final nuevoScan = new ScanModel(valor: valor);
+    final nuevoScan =  ScanModel(valor: valor);
+  
+//    final nuevoScan =  ScanModel(valor: 'http://www.xavirambla.net');
     final id = await DBProvider.db.nuevoScan(nuevoScan);
     // asignar el id de la base de datos al modelo
     nuevoScan.id=id;
-    if (this.tipoSeleccionado == nuevoScan.tipo) {
-      this.scans.add(nuevoScan);    //solo lo insertamos en caso de estar viendo lo mismo
+    if ( tipoSeleccionado == nuevoScan.tipo) {
+      scans.add(nuevoScan);    //solo lo insertamos en caso de estar viendo lo mismo
       notifyListeners();
       }
   return nuevoScan;
@@ -28,17 +30,17 @@ class ScanListProvider extends ChangeNotifier {
   cargarScansPorTipo(String tipo) async {
       final scans = await DBProvider.db.getScansPorTipo(tipo);
       this.scans = [...scans]; // creo un nuevo array y lo pongo en el atributo
-      this.tipoSeleccionado= tipo;
+      tipoSeleccionado= tipo;
       notifyListeners();    
   }
   borrarTodos() async {
     await DBProvider.db.deleteAllScans();
-    this.scans = [];
+    scans = [];
     notifyListeners();
   }
   borrarScanPorId (int id) async {
     await DBProvider.db.deleteScan(id);
-    cargarScansPorTipo( this.tipoSeleccionado ); // aquí ya hay el notifyListeners    
+    cargarScansPorTipo( tipoSeleccionado ); // aquí ya hay el notifyListeners    
   }
 
 

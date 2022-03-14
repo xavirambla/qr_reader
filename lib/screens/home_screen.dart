@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qr_reader/pages/pages.dart';
 import 'package:qr_reader/providers/providers.dart';
+import 'package:qr_reader/router/app_routes.dart';
+import 'package:qr_reader/themes/themes.dart';
 import 'package:qr_reader/widgets/widgets.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title:  Text('Historial') ,
+        title:  const Text('Historial') ,
         actions: [
           IconButton(
             onPressed: (){
@@ -22,12 +23,25 @@ class HomePage extends StatelessWidget {
 
             } , 
             icon: const Icon(Icons.delete_forever) 
-            )
+            ),
+          IconButton(
+            onPressed: (){
+              
+              Navigator.pushNamed(context, 'settings');
+            //  scanListProvider.borrarTodos();
+
+            } , 
+            icon: const Icon(Icons.settings) 
+            )            
         ],
         ),
-      body: _HomePageBody(),
-        bottomNavigationBar: CustomNavigationBar() ,
-        floatingActionButton: ScanButton(),
+      body: Stack(children: const [
+          BackgroundGradient(),
+         _HomePageBody()
+          ]
+         ),
+        bottomNavigationBar: const  CustomNavigationBar() ,
+        floatingActionButton: const ScanButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         
     );
@@ -83,16 +97,20 @@ class _HomePageBody extends StatelessWidget {
       switch ( currentIndex){
         case 0:
           scanListProvider.cargarScansPorTipo('geo');
-          return MapasPage();
+          return AppRoutes.getScreen('mapas');
+          //return const MapasScreen();
 
         case 1:
+
           scanListProvider.cargarScansPorTipo('http');
-          return DireccionesPage();
+          return AppRoutes.getScreen('direccion');
+          // return DireccionesScreen();
           
         default:
-          return MapasPage();
+          return AppRoutes.getScreen('mapas');
+        //  return MapasScreen();
       }
 
-    return Container();
+   // return Container();
   }
 }

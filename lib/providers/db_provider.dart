@@ -30,7 +30,7 @@ class DBProvider{
       Directory documentsDirectory = await getApplicationDocumentsDirectory();
 
       final path = join( documentsDirectory.path, 'ScansDB.db' );
-      print ( path );
+ //     print ( path );
 
       //crear base de datos
     return await openDatabase (
@@ -46,7 +46,40 @@ class DBProvider{
             valor TEXT
           )
         ''');
-        print(' Scans created!');
+//        print(' Scans created!');
+/*
+  await db.rawInsert('''
+      INSERT INTO Scans (id, tipo, valor)
+        VALUES ( 1, 'http', 'http://www.xavirambla.net'  );
+      ''');
+
+ await db.rawInsert('''
+      INSERT INTO Scans (id, tipo, valor)
+        VALUES ( 2, 'http', 'http://www.google.com'  );
+      ''');
+
+  await db.rawInsert('''
+      INSERT INTO Scans (id, tipo, valor)
+        VALUES ( 3, 'http', 'http://www.barnesandnoble.com'  );
+      ''');
+
+
+await db.rawInsert('''
+      INSERT INTO Scans (id, tipo, valor)
+        VALUES ( 10, 'geo', 'geo: 42.398037,-71.114798'  );
+      ''');
+
+await db.rawInsert('''
+      INSERT INTO Scans (id, tipo, valor)
+        VALUES ( 11, 'geo', 'geo: 34.026345,-118.320004'  );
+      ''');
+
+await db.rawInsert('''
+      INSERT INTO Scans (id, tipo, valor)
+        VALUES ( 12, 'geo', 'geo: 40.699765,-74.052686'  );
+      ''');
+*/
+
       }
 
     );
@@ -65,7 +98,7 @@ class DBProvider{
       INSERT INTO Scans (id, tipo, valor)
         VALUES ( $id, '$tipo', '$valor'  );
       ''');
-    print( res);
+  //  print( res);
 
       return res;
   }

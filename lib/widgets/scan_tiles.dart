@@ -34,7 +34,7 @@ class ScanTiles extends StatelessWidget {
         child: ListTile(
           leading: Icon (Icons.map, color: Theme.of(context).primaryColor),
           title: Text(scans[i].valor ),
-          subtitle: Text( scans[i].id.toString()  ),
+          //subtitle: Text( scans[i].id.toString()  ),
           trailing: const Icon (Icons.keyboard_arrow_right, color: Colors.grey),
           onTap: () {
             launchURL(context, scans[i] );

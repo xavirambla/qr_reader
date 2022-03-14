@@ -6,11 +6,11 @@ class UiProvider extends ChangeNotifier{
   int _selectedMenuOpt = 0;
 
   int get selectedMenuOpt{
-    return this._selectedMenuOpt;
+    return _selectedMenuOpt;
   }
 
   set selectedMenuOpt ( int i){
-    this._selectedMenuOpt = i ;
+    _selectedMenuOpt = i ;
     notifyListeners() ;  // avisa a todos los widgets que están escuchando
   }
 

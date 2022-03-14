@@ -8,15 +8,15 @@ import 'package:qr_reader/providers/db_provider.dart';
 
 
 
-class MapaPage extends StatefulWidget {
-  const MapaPage({Key? key}) : super(key: key);
+class MapaScreen extends StatefulWidget {
+  const MapaScreen({Key? key}) : super(key: key);
 
   @override
-  State<MapaPage> createState() => _MapaPageState();
+  State<MapaScreen> createState() => _MapaScreenState();
 }
 
-class _MapaPageState extends State<MapaPage> {
-  Completer<GoogleMapController> _controller = Completer();
+class _MapaScreenState extends State<MapaScreen> {
+  Completer<GoogleMapController> controllerCompleter = Completer();
   MapType mapType = MapType.normal;
 
   @override
@@ -31,9 +31,9 @@ class _MapaPageState extends State<MapaPage> {
       );
     
 // marcadores
-  Set<Marker> markers= new Set<Marker>();
-    markers.add( new Marker ( 
-      markerId: MarkerId('geo-location'),  // ponemos un id único
+  Set<Marker> markers=  Set<Marker>();
+    markers.add(  Marker ( 
+      markerId: const MarkerId('geo-location'),  // ponemos un id único
       position: scan.getLatLng()
     )  );
 
@@ -44,7 +44,7 @@ class _MapaPageState extends State<MapaPage> {
           IconButton(
             onPressed: () async {
               // nos movemos al marcador
-              final GoogleMapController controller = await _controller.future;
+              final GoogleMapController controller = await controllerCompleter.future;
               controller.animateCamera(
               CameraUpdate.newCameraPosition(
                 CameraPosition(
@@ -56,7 +56,7 @@ class _MapaPageState extends State<MapaPage> {
                 )
               );
             },
-            icon: Icon ( Icons.location_disabled )
+            icon: const Icon ( Icons.location_disabled )
             )
 
         ]
@@ -75,13 +75,15 @@ class _MapaPageState extends State<MapaPage> {
         ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          if (mapType== MapType.normal)
-            mapType=MapType.satellite;
-          else
+          if (mapType== MapType.normal) {
+              mapType=MapType.satellite;
+              }
+          else {
             mapType= MapType.normal;
+          }
          setState(() {      });       //redibujamos el widget
         },
-        child: Icon( Icons.layers),
+        child: const  Icon( Icons.layers),
         ),
     );
   }

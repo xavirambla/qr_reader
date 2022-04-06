@@ -5,11 +5,11 @@ import 'package:qr_reader/providers/providers.dart';
 
 
 class CustomNavigationBar extends StatelessWidget {
-  
-  const CustomNavigationBar({Key? key}) : super(key: key);
+   final List<BottomNavigationBarItem> items;
+  const CustomNavigationBar({Key? key, required this.items}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context ) {
     final uiProvider  = Provider.of<UiProvider>(context);
     final primaryColor = Provider.of<ThemeProvider>(context).currentTheme.primaryColor;
     
@@ -25,17 +25,7 @@ class CustomNavigationBar extends StatelessWidget {
       selectedIconTheme: IconThemeData( color:primaryColor ),
       selectedItemColor:  primaryColor ,
       elevation:0,
-      items: const  [  // como mínimo 2 items
-        BottomNavigationBarItem(
-          icon:  Icon (Icons.map ),
-          label:'Mapa'
-           
-        ),
-        BottomNavigationBarItem(
-          icon: Icon (Icons.compass_calibration ),
-          label:'Direcciones'
-        ),        
-      ],
+      items: items,
      ) ;
   }
 }

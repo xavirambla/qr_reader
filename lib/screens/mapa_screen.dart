@@ -31,7 +31,8 @@ class _MapaScreenState extends State<MapaScreen> {
       );
     
 // marcadores
-  Set<Marker> markers=  Set<Marker>();
+//  Set<Marker> markers=  Set<Marker>();
+  Set<Marker> markers=  <Marker>{};
     markers.add(  Marker ( 
       markerId: const MarkerId('geo-location'),  // ponemos un id único
       position: scan.getLatLng()

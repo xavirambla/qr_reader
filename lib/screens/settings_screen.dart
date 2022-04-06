@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:qr_reader/providers/theme_provider.dart';
-import 'package:qr_reader/share_preferences/preferences.dart';
+import 'package:qr_reader/l10n/gen/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_reader/share_preferences/preferences.dart';
+import 'package:qr_reader/providers/providers.dart';
 import 'package:qr_reader/themes/themes.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const String routerName ='Settings';
@@ -15,25 +15,25 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-/*
-  bool isDarkmode = Preferences.isDarkmode;
-  int gender =1;
-  String name= 'Pedro';
-*/
+
    @override
    Widget build (BuildContext context){  
-     const styleTitle = TextStyle( fontSize: 30,fontWeight: FontWeight.w500);
-     double vheight = MediaQuery.of(context).size.height;
+     final currentTheme = Provider.of<ThemeProvider>(context).currentTheme;
+     
+//     double vheight = MediaQuery.of(context).size.height;
+     var   t = AppLocalizations.of(context);
+     
+      final Map<String,String> optionsLanguage =LanguageProvider.languagemap;
 
       return Scaffold(
         appBar: AppBar(
-          title: const  Text('Settings'),
+          title:  Text( t!.settingsTitle ),
           ),
 //          drawer: const SideMenu(),
          body: Stack(
            children:[
              //background
-             const BackgroundGradient(), 
+             const Background(), 
              //front
               SingleChildScrollView(   // recomendable cuando tienes cajas de texto, para evitar que el teclado puede tapar el widget
               
@@ -46,11 +46,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,              
                   
                   children:[
-                    const Text('Ajustes', style: styleTitle,),
+  /*
+                    Text( t.settingsTitle ,style: styleTitle  ),
                     const Divider(),
+*/                    
                     SwitchListTile(
                       value: Preferences.isDarkmode, 
-                      title: const Text('Darkmode'),
+                      title: Text( t.darkmode, style:  currentTheme.textTheme.bodyText1 ),
                     onChanged:  ( value ){
                           Preferences.isDarkmode=value;
                           final themeProvider = Provider.of<ThemeProvider>(context,listen:false);
@@ -62,27 +64,41 @@ class _SettingsScreenState extends State<SettingsScreen> {
          
                     }
                     ),
-                     SizedBox(height: vheight -300 ,),                               
-                  //const Spacer(),
-                  //Spacer(),
-                  //Expanded(child: Container( ),),
-                    const Text('Acerca de', style: styleTitle,),          
-                    //const Textd ('Acerca De', style: styleTitle,),
-                    const Divider(),                               
-                    const Text("Xavi Rambla",  ), 
-                    const SizedBox(height: 10,),
-                    //const Text("Más información en www.xavirambla.net",  ), 
-                    InkWell(
-                        child: Row(
-                          children:  const [
-                            Text('Más información en ',),
-                            Text('www.xavirambla.net', style: TextStyle( color: Colors.blueAccent ),),
-                          ],
-                        ),
-                        onTap: () => launch('http://www.xavirambla.net')
-         
+                    const SizedBox(height:  30 ,),   
+                    Column(
+                      children: [
+                        Text( t.languageTitle, style:  currentTheme.textTheme.bodyText1 ),
+                        DropdownButton<String>(
+                          hint:  Text( t.languageTitle ),
+                          isExpanded: true,
+                            items: optionsLanguage
+                                      .map((String key, String value) {
+                                          return MapEntry (
+                                            key,
+                                            DropdownMenuItem<String> (
+                                              value: value,
+                                              child: Text(key, style:  currentTheme.textTheme.bodyText1)
+                                            )
+                                          );
+                        }).values.toList(),
+                        onChanged: ( newValue){
+                              Preferences.language = newValue!;
+                              final languageProvider  = Provider.of<LanguageProvider>( context, listen:false);           
+                              languageProvider.selectedLocale  = languageProvider.getLocale( Preferences.language );    
+                              
+                        },
+                        value: Preferences.language.isEmpty? "en": Preferences.language,
+
+                 
+      ),
+                      ],
                     ),
-         
+
+
+
+
+                   
+           
                   ]
                   ,),
               ),

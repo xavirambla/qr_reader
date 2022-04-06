@@ -1,0 +1,30 @@
+{
+    "language":             "Français",
+    "languageTitle":        "Langue",
+    "historial":            "Disque",
+    "appTitle":             "QR-Reader"    ,
+    "abrirPersonalizacion": "Ouvrir la personnalisation",
+    "settingsTitle":        "Personnalisation",
+    "darkmode":             "Mode sombre",
+    "homeTitle":            "Disque",   
+    "helpTitle":            "Aider",  
+    "aboutTitle":           "À propos de",
+    "version":              "Version",
+    "buildNumber":          "Numéro de Construction",
+    "author":               "@ 2021-2022 Xavi Rambla",
+    "copyright":            "Tous droits réservés"   , 
+
+    "mapTitle":             "Carte",   
+    "addressTitle":         "Adresses",
+    "deleteAll":            "Tout effacer",
+
+    "help_description_1" :  "Lecteur QRS pour obtenir des URL ou des coordonnées de positionnement.",
+    "help_description_2" :  "Le menu inférieur a le bouton de numérisation et comprend deux boutons pour visiter l'historique des cartes ou des adresses.",
+    "help_description_3" :  "Toutes les lectures seront stockées dans une base de données interne au sein du mobile pour être consultées",
+    "help_description_4" :  "Il est possible, la suppression individuelle d'une lecture ou la suppression de toutes les lectures en cliquant sur le bouton correspondant.",
+    "help_title_5" :        "Pas de partage de données",
+    "help_description_5" :  "Les lectures effectuées ne seront PAS transmises sur Internet, rendant impossible l'utilisation desdites informations par des tiers."
+
+
+    
+}    

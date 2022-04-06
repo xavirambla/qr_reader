@@ -1,0 +1,51 @@
+{
+    "language": "English",
+    "@language":{
+        "description": "The current Language"
+    },
+
+    "languageTitle": "Language",
+    "@languageTitle":{
+        "description": "Title for Language"
+    },
+
+
+    "appTitle": "QR-Reader",
+    "@appTitle":{
+        "description": "appTitle"
+    },
+
+    "abrirPersonalizacion": "Open Settings",
+    "@abrirPersonalizacion":{
+        "description": "abrirPersonalizacion"
+    },
+    "settingsTitle": "Settings"    ,
+    "@settingsTitle":{
+        "description": "settings"
+    },
+    "darkmode": "Dark Mode",
+    "@darkmode":{
+        "description": "Dark Mode title"
+    },
+    "homeTitle":"History",   
+    "helpTitle":"Help",
+    "aboutTitle":"About",
+    "version": "Version",
+    "buildNumber": "Build Number",
+    "author": "@ 2021-2022 Xavi Rambla",
+    "copyright": "All Rights Reserved",
+
+    "mapTitle":"Map",   
+    "addressTitle":"Address",
+    "deleteAll":"Delete all",
+
+    "help_description_1" :  "QR reader to obtain URLs or GPS coordinates.",
+    "help_description_2" :  "The lower menu has the scan button and includes two buttons to visit the history of maps or addresses.",
+    "help_description_3" :  "All readings will be stored in an internal database within the mobile to be consulted",
+    "help_description_4" :  "It's possible, the individual deletion of a reading or the deletion of all readings by clicking the corresponding button.",
+    "help_title_5" :        "No data sharing",
+    "help_description_5" :  "The readings made will NOT be transmitted over the net, your information not share to third parties"
+
+
+
+}

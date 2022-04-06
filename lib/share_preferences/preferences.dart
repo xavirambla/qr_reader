@@ -20,6 +20,7 @@ class Preferences {
 
   static String _name = '';
   static bool   _isDarkmode =false;
+  static String _language='';
   static int    _gender= 1;
 
   //el constructor no puede ser asyncrono así que hacemos esto
@@ -44,6 +45,18 @@ class Preferences {
     _isDarkmode = isDarkmode;
     _prefs.setBool('isDarkmode', _isDarkmode);
   }
+
+  static String get language {
+    return _prefs.getString( 'language' ) ?? _language;
+  }
+
+  static set language( String language ){
+    _language = language;
+    _prefs.setString('language', _language );
+  }
+
+
+
 
   static int get gender {
     return _prefs.getInt( 'gender' ) ?? _gender;

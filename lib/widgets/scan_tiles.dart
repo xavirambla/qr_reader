@@ -16,6 +16,7 @@ class ScanTiles extends StatelessWidget {
   Widget build(BuildContext context) {
    final scanListProvider = Provider.of<ScanListProvider>(context);
     final scans =scanListProvider.scans; 
+    final currentTheme = Provider.of<ThemeProvider>(context).currentTheme;
 
     return ListView.builder(
       itemCount: scans.length ,
@@ -33,7 +34,7 @@ class ScanTiles extends StatelessWidget {
           },
         child: ListTile(
           leading: Icon (Icons.map, color: Theme.of(context).primaryColor),
-          title: Text(scans[i].valor ),
+          title: Text(scans[i].valor, style:  currentTheme.textTheme.bodyText1 ),
           //subtitle: Text( scans[i].id.toString()  ),
           trailing: const Icon (Icons.keyboard_arrow_right, color: Colors.grey),
           onTap: () {

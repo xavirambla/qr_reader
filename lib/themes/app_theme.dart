@@ -17,11 +17,15 @@ class AppTheme {
 
   static Color backgroundColorLight =  Colors.orange[50]!   ;    
   static Color backgroundColorLight1 =  Colors.orange[100]!   ;   
-
+/*
+  static Color backgroundColorLight =  Colors.orange   ;    
+  static Color backgroundColorLight1 =  Colors.orange   ;   
+*/
   static Color backgroundColorDark =  Colors.blueGrey[700]!   ;   
   static Color backgroundColorDark1 =  Colors.blueGrey[900]!   ;   
 
-  
+  static Color textColorLight = Colors.black;
+  static Color textColorDark = Colors.white;
 
   
 
@@ -30,9 +34,26 @@ class AppTheme {
         // color primario
         primaryColor: AppTheme.primaryDark,
         primaryColorLight: AppTheme.backgroundColorDark,
-        primaryColorDark: AppTheme.backgroundColorDark1,
+        primaryColorDark: AppTheme.backgroundColorDark1,    
+        dialogBackgroundColor: Colors.black54,        
+        shadowColor: Colors.white24,
 
-      
+         textTheme: const TextTheme(
+           
+           bodyText1:   TextStyle( color: Colors.white ,fontWeight: FontWeight.normal, fontSize: 15  ),
+           bodyText2:   TextStyle( color: Colors.white ),     
+           
+
+           headline1:   TextStyle(fontSize: 30, fontWeight: FontWeight.w500, color: Colors.white),          
+           headline2:   TextStyle(fontSize: 30, fontWeight: FontWeight.w300, color: Colors.white ),          
+           headline3:   TextStyle(fontSize: 25, fontWeight: FontWeight.w100, color: Colors.white ),  
+
+        
+  
+
+         ),
+
+        
 
         //appBar Theme
         appBarTheme: const AppBarTheme(
@@ -90,7 +111,6 @@ class AppTheme {
 
   );
 
-
 //---------------------------------------------------------------------------------------------------------------------------------------
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
@@ -100,8 +120,23 @@ class AppTheme {
 
         primaryColorLight: AppTheme.backgroundColorLight,
         primaryColorDark: AppTheme.backgroundColorLight1,
+        dialogBackgroundColor: Colors.white60,        
+        shadowColor: Colors.black12,        
+
+         textTheme: const TextTheme(
+           
+           bodyText1:   TextStyle( color: Colors.black,fontWeight: FontWeight.normal, fontSize: 15   ),
+           bodyText2:   TextStyle( color: Colors.black ),           
+
+           headline1:   TextStyle(fontSize: 30, fontWeight: FontWeight.w500, color: Colors.black),          
+           headline2:   TextStyle(fontSize: 25, fontWeight: FontWeight.w300, color: Colors.black),          
+           headline3:   TextStyle(fontSize: 20, fontWeight: FontWeight.w100, color: Colors.black),          
 
 
+
+         ),
+
+        
         //appBar Theme
         appBarTheme: const AppBarTheme(
           color: AppTheme.primaryLight,
@@ -122,7 +157,6 @@ class AppTheme {
     // ElevatedButtons
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-//        primary: Colors.indigo,
         primary: AppTheme.primaryLight,
         shape: const StadiumBorder(),
         elevation: 0

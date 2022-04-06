@@ -1,0 +1,30 @@
+{
+    "language":         "Català",
+    "languageTitle":    "Llenguatge",
+    "historial":        "Historial",
+    "appTitle":         "QR-Reader"    ,
+    "abrirPersonalizacion": "Obrir Personalizació",
+    "settingsTitle":    "Personalizació",
+    "darkmode":         "Mode fosc",
+    "homeTitle":        "Historial",   
+    "helpTitle":        "Ajuda",  
+    "aboutTitle":       "Sobre mi",
+    "version":          "Versió",
+    "buildNumber":      "Número de Compilació",
+    "author":           "@ 2021-2022 Xavi Rambla",
+    "copyright":        "Tots els drets reservats"   , 
+
+    "mapTitle":         "Mapa",   
+    "addressTitle":     "Direccions",
+    "deleteAll":        "Borrar tot",
+
+
+    "help_description_1" :  "Lector de QRS per obtindre URLs o coordenades de Posicionament.",
+    "help_description_2" :  "El menu inferior disposa d'un botó de scaneig i dos botons per visitar l'historial de mapes o direccions.",
+    "help_description_3" :  "Totes les lectures són emmagatzemades en una base de dades interna dins del teu mòvil per poder ser consultades",
+    "help_description_4" :  "Es possible, l'eliminació individual de una lectura o l'eliminació de totes les lectures mitjançant el botó corresponent.",
+    "help_title_5" :        "No es comparteixen dades",
+    "help_description_5" :  "Les lectures realizatzades NO viatgen per internet i no seran compartides amb tercers."
+
+
+}

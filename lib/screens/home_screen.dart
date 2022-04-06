@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_reader/l10n/gen/app_localizations.dart';
+
+
 import 'package:qr_reader/providers/providers.dart';
 import 'package:qr_reader/router/app_routes.dart';
 import 'package:qr_reader/themes/themes.dart';
 import 'package:qr_reader/widgets/widgets.dart';
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,42 +15,98 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scanListProvider = Provider.of<ScanListProvider>(context, listen:false); // no queremos que se redibuje
-
+   var   t = AppLocalizations.of( context );
+       
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title:  const Text('Historial') ,
+        title:  Text( t!.homeTitle    ) ,
         actions: [
           IconButton(
             onPressed: (){
               scanListProvider.borrarTodos();
 
             } , 
-            icon: const Icon(Icons.delete_forever) 
+            icon: const Icon(Icons.delete_forever) ,
+            tooltip: t.deleteAll ,
             ),
-          IconButton(
-            onPressed: (){
-              
-              Navigator.pushNamed(context, 'settings');
-            //  scanListProvider.borrarTodos();
-
-            } , 
-            icon: const Icon(Icons.settings) 
-            )            
+            const _PopupSettings(),       
         ],
         ),
       body: Stack(children: const [
-          BackgroundGradient(),
+          Background(),
          _HomePageBody()
           ]
          ),
-        bottomNavigationBar: const  CustomNavigationBar() ,
+        bottomNavigationBar:   CustomNavigationBar( items: getItemsForNavigationBar( t ) ) ,
         floatingActionButton: const ScanButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         
     );
   }
+
+
+  List<BottomNavigationBarItem> getItemsForNavigationBar(  AppLocalizations t ){
+
+    return  [  // como mínimo 2 items
+        BottomNavigationBarItem(
+          icon:  const Icon (Icons.map ),
+          label:t.mapTitle 
+           
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon (Icons.compass_calibration ),
+          label: t.addressTitle
+        ),        
+      ];
+  }
+  
 }
+
+class _PopupSettings extends StatelessWidget {
+  const _PopupSettings({
+    Key? key,
+  }) : super(key: key);
+
+/*
+ * Función que le pasamos las opciones y nos duevelve los popupMenuItems para poder ser usados
+*/
+  List<PopupMenuItem> _getMenuOptions( menuOptions, context ){
+    final currentTheme = Provider.of<ThemeProvider>(context).currentTheme;
+    List<PopupMenuItem> resultado =[]; 
+    for (var option in menuOptions){
+      resultado.add(
+        PopupMenuItem(
+            child: Text( option.title ,style: currentTheme.textTheme.bodyText1, ),
+            value: option.route ,
+          )
+      );
+
+    }
+    return resultado;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final menuOptions =  _getMenuOptions( AppRoutes.getMenuSettings( context ) ,context);
+
+
+    return PopupMenuButton( 
+      itemBuilder: (context) { 
+        return menuOptions;
+        },              
+      onSelected: ( choice) {  
+//          print(choice);   //cuidado en caso de no existir el screen de la route entonces aparecerá pantalla negra
+          Navigator.pushNamed(context, choice.toString() );
+      } ,
+ //             child: CircleAvatar(
+      child: const ClipOval(
+        child:  Icon(Icons.settings) ,
+   //           )
+    ),  );
+  }
+}
+
 
 
 class _HomePageBody extends StatelessWidget {
@@ -114,3 +174,6 @@ class _HomePageBody extends StatelessWidget {
    // return Container();
   }
 }
+
+
+

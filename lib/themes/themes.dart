@@ -8,6 +8,5 @@
  * @copyright Copyright (c) 2022 Xavi Rambla, https://xavirambla.net .
  */
 export 'package:qr_reader/themes/app_theme.dart';
-
-export 'package:qr_reader/themes/background_gradient.dart';
+export 'package:qr_reader/themes/background.dart';
 

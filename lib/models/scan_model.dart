@@ -16,24 +16,23 @@ class ScanModel {
          tipo = 'http';
       }else{
            tipo ='geo';
-      }  
-      
-
+      }        
     }
 
     int ?id;
     String ?tipo;
     String valor;
 
-    LatLng getLatLng (){
+    LatLng getLatLng () {
+        if (tipo != 'geo'){
+          throw Exception( 'El tipo de este objeto no es una geoposición' )  ;
+          }
+
         final latLng =  valor.substring(4).split(',');  // crea un array con la latitud  y longit
         final lat = double.parse( latLng[0]  );
         final lng = double.parse( latLng[1]  );
-        
-        return LatLng ( lat, lng );
-
+        return LatLng ( lat, lng );        
     }
-
 
     factory ScanModel.fromJson(Map<String, dynamic> json) => ScanModel(
         id: json["id"],

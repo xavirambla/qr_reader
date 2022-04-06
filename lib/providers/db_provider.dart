@@ -20,7 +20,6 @@ class DBProvider{
 
   Future<Database> get database async {
     if (_database != null ) return _database!;
-
     _database = await initDB();
     return _database!;
   }
@@ -28,8 +27,8 @@ class DBProvider{
   Future<Database> initDB() async{
       // PAth de donde almacenamos la base de datos
       Directory documentsDirectory = await getApplicationDocumentsDirectory();
-
       final path = join( documentsDirectory.path, 'ScansDB.db' );
+    
  //     print ( path );
 
       //crear base de datos
@@ -39,6 +38,7 @@ class DBProvider{
       onOpen: (db){}, // al abrirla , se ejecuta  
       onCreate: (Database db, int version) async{
         // las 3 comillas son  para hacer un string multilinea
+
         await db.execute('''
           CREATE TABLE Scans(
             id INTEGER PRIMARY KEY,
@@ -130,7 +130,6 @@ await db.rawInsert('''
     final db= await database;   
     final res = await db.query('Scans' );
 //    return res.map( (s)=> ScanModel.fromJson(s)).toList() ;
-
     return res.isNotEmpty
       ? res.map( (s)=> ScanModel.fromJson(s)).toList() 
       : [];

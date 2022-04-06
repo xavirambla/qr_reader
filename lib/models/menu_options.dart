@@ -13,15 +13,20 @@ class MenuOption {
   final String route;   //ruta
   final IconData icon;
   final String name;   // nombre de la ruta
+   String title;   // title to print
   final Widget screen;// la pantalla que se va a mostrar
 
   MenuOption( {
     required this.route,
     required this.icon,
     required this.name,
+    required this.title,
     required this.screen
+    
   });
 
+
+  
 
 
 }
